@@ -23,7 +23,7 @@ function TaskCreate({onCreate}) {
     return ( 
         <div className="taskCreateDiv">
             <h3>Lütfen Task Ekleyiniz</h3>
-            <form onSubmit={handleSubmit} className="taskForm">
+            <form className="taskForm">
                 <label className="taskLabel">Başlık</label>
                 <input value={title} onChange={handleChange} className="taskInput"/>
                 <label className="taskLabel">Task Giriniz!</label>
