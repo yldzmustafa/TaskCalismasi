@@ -5,6 +5,26 @@ import TaskList from './components/TaskList';
 
 function App() {
 
+  const [tasks, setTasks] = useState([]);
+
+
+  const updateTaskByID = (id, updatedTitle, updatedTaskDesc) => {
+    
+    const updatedTask = tasks.map((task) => {
+      if(task.id === id){
+        return {
+          id,
+          title:updatedTitle, 
+          taskDesc:updatedTaskDesc}
+      }else{
+        return task;
+      }
+
+    })
+
+    setTasks(updatedTask)
+  }
+
   const deleteTaskByID = (id) => {
     console.log(id);
 
@@ -15,7 +35,6 @@ function App() {
     setTasks(afterDeleteTasks)
   }
 
-  const [tasks, setTasks] = useState([]);
 
   const createTask = (title, taskDesc) => {
     // console.log(title, taskDesc)
@@ -40,7 +59,7 @@ function App() {
     <div className="App">
       <TaskCreate onCreate={createTask} />
       <h1>Görevler</h1>
-      <TaskList tasks={tasks} onDelete={deleteTaskByID} />
+      <TaskList tasks={tasks} onDelete={deleteTaskByID} onUpdate={updateTaskByID}/>
     </div>
   );
 }

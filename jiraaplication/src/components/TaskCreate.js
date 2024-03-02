@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-function TaskCreate({onCreate, task, taskFormUpdate}) {
+function TaskCreate({onCreate, task, taskFormUpdate, onUpdate}) {
 
     const [title, setTitle]         = useState(task ? task.title : '')
     const [taskDesc, setTaskDesc]   = useState(task ? task.taskDesc : '')
@@ -15,7 +15,12 @@ function TaskCreate({onCreate, task, taskFormUpdate}) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        onCreate(title, taskDesc)
+        if(taskFormUpdate){
+            onUpdate(task.id, title, taskDesc)
+        }else{
+            onCreate(title, taskDesc)
+
+        }
         setTitle('')
         setTaskDesc('')
     }
@@ -30,7 +35,7 @@ function TaskCreate({onCreate, task, taskFormUpdate}) {
                     <input value={title} onChange={handleChange} className="taskInput"/>
                     <label className="taskLabel">Task Düzenleyiniz!</label>
                     <textarea value={taskDesc} onChange={handleTaskChange} className="taskInput" rows={5}></textarea>
-                    <button onClick={handleSubmit} className="taskButton update-button">Oluştur</button>
+                    <button onClick={handleSubmit} className="taskButton update-button">Düzenle</button>
                 </form>
             </div> 
             :       
