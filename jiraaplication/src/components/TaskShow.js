@@ -16,7 +16,7 @@ function TaskShow({ task, onDelete, onUpdate }) {
         setShowEdit(false)
         onUpdate(id, updatedTitle, updatedTaskDesc)
     }
-    console.log(task)
+    // console.log(task)
     return (
 
         <div className="task-show">
