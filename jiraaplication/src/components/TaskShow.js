@@ -1,11 +1,17 @@
 import TaskCreate from "./TaskCreate";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import TasksContext from '../context/task';
 
-function TaskShow({ task, onDelete, onUpdate }) {
+function TaskShow({ task }) {
+
+    // Contextten value ve method çekiyorum
+    const { tasks, deleteTaskByID, updateTaskByID } = useContext(TasksContext)
+
     const [showEdit, setShowEdit] = useState(false)
 
     const handleDelete = () => {
-        onDelete(task.id);
+        // onDelete(task.id);
+        deleteTaskByID(task.id)
     }
 
     const handleEditClick = () => {
@@ -14,7 +20,8 @@ function TaskShow({ task, onDelete, onUpdate }) {
 
     const handleUpdate = (id, updatedTitle, updatedTaskDesc) => {
         setShowEdit(false)
-        onUpdate(id, updatedTitle, updatedTaskDesc)
+        // onUpdate(id, updatedTitle, updatedTaskDesc)
+        updateTaskByID(id, updatedTitle, updatedTaskDesc)
     }
     // console.log(task)
     return (

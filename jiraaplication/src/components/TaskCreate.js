@@ -1,6 +1,10 @@
-import {useState} from 'react'
+import { useState, useContext } from "react";
+import TasksContext from '../context/task';
 
-function TaskCreate({onCreate, task, taskFormUpdate, onUpdate}) {
+function TaskCreate({task, taskFormUpdate, onUpdate}) {
+
+    // Contextten value ve method çekiyorum
+    const { createTask, updateTaskByID } = useContext(TasksContext)
 
     const [title, setTitle]         = useState(task ? task.title : '')
     const [taskDesc, setTaskDesc]   = useState(task ? task.taskDesc : '')
@@ -17,8 +21,10 @@ function TaskCreate({onCreate, task, taskFormUpdate, onUpdate}) {
         event.preventDefault();
         if(taskFormUpdate){
             onUpdate(task.id, title, taskDesc)
+            // updateTaskByID(task.id, title, taskDesc)
         }else{
-            onCreate(title, taskDesc)
+            // onCreate(title, taskDesc)
+            createTask(title, taskDesc)
 
         }
         setTitle('')
